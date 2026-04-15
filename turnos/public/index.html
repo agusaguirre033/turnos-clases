@@ -112,62 +112,135 @@ body {
 .pill-virt { background: linear-gradient(90deg,#06b6d4,#3b82f6); color: white; }
 
 /* Chat bubbles section */
+/* ══════ CHAT SECTION - ESTILO FLYER ══════ */
 .chat-section {
-  background: #ece5dd;
-  border-radius: 16px;
-  padding: 10px 8px;
+  background: linear-gradient(180deg, #fdf8f3 0%, #fef5ed 30%, #fdf2e8 60%, #f9ede3 100%);
+  border-radius: 20px;
+  padding: 25px 18px;
   margin-bottom: 1rem;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9b99a' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-.chat-row {
-  display: flex;
-  margin-bottom: 6px;
-  gap: 6px;
-}
-.chat-row.right { flex-direction: row-reverse; }
-
-.bubble {
-  max-width: 72%;
-  border-radius: 12px;
-  padding: 6px 10px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.4;
   position: relative;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-}
-.bubble-left {
-  background: white;
-  border-radius: 0px 12px 12px 12px;
-  color: #111;
-}
-.bubble-right {
-  background: #dcf8c6;
-  border-radius: 12px 0px 12px 12px;
-  color: #111;
-}
-.bubble-green {
-  background: linear-gradient(135deg, #a7f3d0, #6ee7b7);
-  border-radius: 0px 12px 12px 12px;
-  color: #064e3b;
-}
-.bubble-blue {
-  background: linear-gradient(135deg, #bfdbfe, #93c5fd);
-  border-radius: 12px 0px 12px 12px;
-  color: #1e3a5f;
-}
-.bubble-time {
-  font-size: 9px;
-  color: #888;
-  text-align: right;
-  margin-top: 2px;
+  overflow: hidden;
 }
 
-.chat-grid {
+/* Patrón de fondo sutil con iconos matemáticos */
+.chat-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4c4b0' fill-opacity='0.12'%3E%3Ctext x='10' y='20' font-size='12'%3E%2B%3C/text%3E%3Ctext x='50' y='35' font-size='10'%3E%C3%B7%3C/text%3E%3Ctext x='25' y='55' font-size='11'%3E%3D%3C/text%3E%3Ctext x='70' y='70' font-size='12'%3E%C3%97%3C/text%3E%3Ctext x='15' y='85' font-size='10'%3E%CF%80%3C/text%3E%3Ctext x='80' y='20' font-size='11'%3E%E2%88%9A%3C/text%3E%3Ctext x='60' y='90' font-size='10'%3E%CE%A3%3C/text%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Decoraciones del flyer */
+.chat-deco {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+.chat-deco img, .chat-deco-emoji {
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.2));
+}
+.chat-deco-emoji {
+  font-size: 38px;
+  display: block;
+}
+
+/* Contenedor de mensajes en grid tipo flyer */
+.chat-grid-flyer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px;
+  gap: 8px 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.chat-col-left, .chat-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Burbujas estilo flyer - MÁS ALARGADAS */
+.msg-bubble {
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.35;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 14px;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+/* Mensaje blanco/gris claro */
+.msg-white {
+  background: rgba(255,255,255,0.97);
+  color: #333;
+  border-radius: 4px 14px 14px 14px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* Mensaje verde claro (estilo WhatsApp enviado) */
+.msg-green-light {
+  background: linear-gradient(135deg, #e8f5e0 0%, #d4efc8 100%);
+  color: #2d5016;
+  border-radius: 14px 4px 14px 14px;
+}
+
+/* Verde degradado fuerte */
+.msg-green {
+  background: linear-gradient(135deg, #b8e6a8 0%, #8dd87a 50%, #6bc957 100%);
+  color: #1a4314;
+  border-radius: 4px 14px 14px 14px;
+  font-weight: 600;
+}
+
+/* Amarillo/Naranja degradado */
+.msg-yellow {
+  background: linear-gradient(135deg, #fef08a 0%, #fde047 50%, #facc15 100%);
+  color: #713f12;
+  border-radius: 16px 4px 16px 16px;
+  font-weight: 600;
+}
+
+/* Azul claro */
+.msg-blue {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
+  color: #1e3a5f;
+  border-radius: 4px 16px 16px 16px;
+}
+
+/* Púrpura degradado */
+.msg-purple {
+  background: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #9333ea 100%);
+  color: #fff;
+  border-radius: 16px 4px 16px 16px;
+  font-weight: 600;
+}
+
+/* Rosa/Naranja degradado */
+.msg-coral {
+  background: linear-gradient(135deg, #fda4af 0%, #fb7185 50%, #f43f5e 100%);
+  color: #fff;
+  border-radius: 4px 16px 16px 16px;
+  font-weight: 600;
+}
+
+/* Hora del mensaje */
+.msg-time {
+  font-size: 10px;
+  color: rgba(0,0,0,0.45);
+  margin-top: 4px;
+  text-align: right;
+}
+.msg-purple .msg-time,
+.msg-coral .msg-time {
+  color: rgba(255,255,255,0.75);
 }
 
 /* TE ESPERO */
@@ -726,61 +799,97 @@ body {
     <span class="pill pill-virt">y Virtuales!</span>
   </div>
 
-  <!-- Chat bubbles -->
+  <!-- Chat bubbles - Testimonios de alumnos -->
   <div class="chat-section">
-    <div class="chat-grid">
-      <!-- Col izquierda -->
-      <div>
-        <div class="chat-row" style="margin-bottom:5px">
-          <div class="bubble bubble-left">
-            Hola Agus, cómo estás?<br>Aprobé química, gracias<br>por ayudarme estos meses
-            <div class="bubble-time">11:40 ✓✓</div>
-          </div>
+    <!-- Decoraciones en las esquinas como en el flyer -->
+    <div class="chat-deco" style="bottom:8px;left:8px;">
+      <span class="chat-deco-emoji">📚</span>
+    </div>
+    <div class="chat-deco" style="bottom:8px;right:8px;">
+      <span class="chat-deco-emoji">🧪</span>
+    </div>
+    <div class="chat-deco" style="top:8px;left:8px;">
+      <span class="chat-deco-emoji" style="font-size:28px;">📐</span>
+    </div>
+    <div class="chat-deco" style="top:8px;right:8px;">
+      <span class="chat-deco-emoji" style="font-size:28px;">✏️</span>
+    </div>
+    <div class="chat-deco" style="top:50%;right:3px;transform:translateY(-50%);">
+      <span class="chat-deco-emoji" style="font-size:24px;">🔬</span>
+    </div>
+    <div class="chat-deco" style="top:50%;left:3px;transform:translateY(-50%);">
+      <span class="chat-deco-emoji" style="font-size:24px;">⚗️</span>
+    </div>
+    
+    <!-- Grid de mensajes estilo flyer -->
+    <div class="chat-grid-flyer">
+      <!-- Columna izquierda -->
+      <div class="chat-col-left">
+        <div class="msg-bubble msg-white">
+          Hola Agus, cómo estás?<br>
+          Aprobé química, gracias<br>
+          por ayudarme estos meses
+          <div class="msg-time">11:40</div>
         </div>
-        <div class="chat-row" style="margin-bottom:5px">
-          <div class="bubble bubble-green">
-            Holaa aguuusss<br>Aprobé matemáticasss
-            <div class="bubble-time">12:30 ✓✓</div>
-          </div>
+        
+        <div class="msg-bubble msg-green">
+          Holaa aguuusss<br>
+          Aprobé matematicasss
+          <div class="msg-time">12:30</div>
         </div>
-        <div class="chat-row" style="margin-bottom:5px">
-          <div class="bubble bubble-right">
-            Aprobé todo agus<br>todo gracias a vos ❤️
-            <div class="bubble-time">11:16 ✓✓</div>
-          </div>
+        
+        <div class="msg-bubble msg-yellow">
+          Aprobé todo agus<br>
+          todo gracias a vos ❤️
+          <div class="msg-time">11:16</div>
         </div>
-        <div class="chat-row">
-          <div class="bubble bubble-left">
-            hola agus<br>buen<br>aprobé física
-            <div class="bubble-time">11:16 ✓✓</div>
-          </div>
+        
+        <div class="msg-bubble msg-white">
+          hola agus
+          <div class="msg-time">11:14</div>
+        </div>
+        
+        <div class="msg-bubble msg-white">
+          buen
+          <div class="msg-time">18:08</div>
+        </div>
+        
+        <div class="msg-bubble msg-white">
+          aprobé física
+          <div class="msg-time">11:16</div>
         </div>
       </div>
-      <!-- Col derecha -->
-      <div>
-        <div class="chat-row right" style="margin-bottom:5px">
-          <div class="bubble bubble-right">
-            aguussss aprobeeeeee<br>Gracias x todooo
-            <div class="bubble-time">8:48 ✓✓</div>
-          </div>
+      
+      <!-- Columna derecha -->
+      <div class="chat-col-right">
+        <div class="msg-bubble msg-green-light">
+          aguussss aprobeeeeee<br>
+          Gracias x todooo
+          <div class="msg-time">8:48</div>
         </div>
-        <div class="chat-row right" style="margin-bottom:5px">
-          <div class="bubble bubble-blue">
-            Holaa aguuusss 12:58<br>Aprobé quimica sos una crack
-            <div class="bubble-time">12:58 ✓✓</div>
-          </div>
+        
+        <div class="msg-bubble msg-white">
+          Holaa aguuusss
+          <div class="msg-time">12:58</div>
         </div>
-        <div class="chat-row right" style="margin-bottom:5px">
-          <div class="bubble bubble-right">
-            Holaa aguuusss<br>Aprobé matemáticasss
-            <div class="bubble-time">12:30 ✓✓</div>
-          </div>
+        
+        <div class="msg-bubble msg-white">
+          Aprobé química sos una crack
+          <div class="msg-time">12:58</div>
         </div>
-        <div class="chat-row right">
-          <div class="bubble bubble-green">
-            Agus aprobé con Cecilia!!!<br>Muchas muchas gracias<br>por ayudarme ❤️❤️
-            <div class="bubble-time">22:06 ✓✓</div>
-          </div>
+        
+        <div class="msg-bubble msg-purple">
+          Holaa aguuusss
+          <div class="msg-time" style="display:inline;margin-left:8px;">12:30</div><br>
+          Aprobé matematicasss
+          <div class="msg-time">12:30</div>
+        </div>
+        
+        <div class="msg-bubble msg-coral">
+          Agus aprobé con Cecilia!!!<br>
+          Muchas muchas gracias<br>
+          por ayudarme ❤️❤️
+          <div class="msg-time">22:06</div>
         </div>
       </div>
     </div>
@@ -934,7 +1043,7 @@ let currentStep = 0;
 
 const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-const HORAS = ['14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30'];
+const HORAS = ['14:00', '15:00', '16:00', '17:00']; // Turnos de 1 hora
 
 // Feriados Argentina 2025-2026
 const FERIADOS = new Set([
@@ -980,11 +1089,24 @@ function pick(group, btn, val) {
 
 document.getElementById('inp-nombre').addEventListener('input', function(){
   st.nombre = this.value.trim();
+  // Validación básica del nombre
+  const nombreValido = st.nombre.length >= 3 && /^[a-záéíóúñü\s]+$/i.test(st.nombre);
+  if (st.nombre.length > 0 && st.nombre.length < 3) {
+    this.style.borderColor = '#f87171';
+  } else if (st.nombre.length >= 3 && !/^[a-záéíóúñü\s]+$/i.test(st.nombre)) {
+    this.style.borderColor = '#f87171';
+  } else if (nombreValido) {
+    this.style.borderColor = '#22c55e';
+  } else {
+    this.style.borderColor = '#e5e7eb';
+  }
   checkStep0();
 });
 
 function checkStep0(){
-  document.getElementById('btn0').disabled = !(st.nombre.length>1 && st.materia && st.modalidad);
+  // Validar nombre: mínimo 3 caracteres, solo letras y espacios
+  const nombreValido = st.nombre.length >= 3 && /^[a-záéíóúñü\s]+$/i.test(st.nombre);
+  document.getElementById('btn0').disabled = !(nombreValido && st.materia && st.modalidad);
 }
 
 // ── Calendar ──
@@ -1063,6 +1185,8 @@ function selectDay(key, el){
 }
 
 // ── Hours ──
+let disponibilidadData = null; // Guardar info de disponibilidad
+
 async function loadHoras(){
   const grid = document.getElementById('hours-grid');
   const loading = document.getElementById('loading-horas');
@@ -1071,32 +1195,55 @@ async function loadHoras(){
   document.getElementById('btn2').disabled = true;
 
   try {
-    const r = await fetch(`${API}/api/disponibilidad?fecha=${st.fecha}`);
+    // Enviar nombre para obtener info de turnos de esta persona
+    const nombreParam = encodeURIComponent(st.nombre);
+    const r = await fetch(`${API}/api/disponibilidad?fecha=${st.fecha}&nombre=${nombreParam}`);
     const data = await r.json();
+    disponibilidadData = data;
     const maxPorTurno = data.maxPorTurno || 3;
     grid.innerHTML = '';
     
-    // Usar horasInfo si existe para mostrar lugares disponibles
+    // Usar horasInfo para mostrar info detallada de cada hora
     if(data.horasInfo) {
       data.horasInfo.forEach(info => {
         const btn = document.createElement('button');
         const lleno = info.lleno;
         const disponibles = info.disponibles;
-        btn.className = 'hour-btn' + (lleno?' ocupado':'') + (st.hora===info.hora?' sel':'');
         
-        // Mostrar hora y lugares disponibles
-        if(lleno) {
-          btn.textContent = info.hora;
+        // Verificar si la persona ya reservó en este horario (no puede tomar 2 materias a la misma hora)
+        const nombreNorm = st.nombre.toLowerCase().trim();
+        const personaYaReservo = info.personas && info.personas.includes(nombreNorm);
+        
+        // Verificar si la modalidad del horario es compatible con la elegida
+        // (No se puede mezclar presencial y virtual en la MISMA HORA)
+        const modalidadIncompatible = info.modalidad && info.modalidad !== st.modalidad && info.ocupados > 0;
+        
+        // El horario no está disponible si:
+        // - Está lleno (3 personas)
+        // - La persona ya reservó en esta hora
+        // - La modalidad no es compatible (ya hay clase de otra modalidad en esta hora)
+        const noDisponible = lleno || personaYaReservo || modalidadIncompatible;
+        
+        btn.className = 'hour-btn' + (noDisponible?' ocupado':'') + (st.hora===info.hora?' sel':'');
+        
+        // Mostrar hora y estado con mensajes claros
+        if(personaYaReservo) {
+          btn.innerHTML = `${info.hora}<br><small style="font-size:10px;opacity:0.7">Ya tenés turno</small>`;
+        } else if(modalidadIncompatible) {
+          btn.innerHTML = `${info.hora}<br><small style="font-size:10px;opacity:0.7">Solo ${info.modalidad}</small>`;
+        } else if(lleno) {
+          btn.innerHTML = `${info.hora}<br><small style="font-size:10px;opacity:0.7">Completo</small>`;
         } else if(disponibles === 1) {
           btn.innerHTML = `${info.hora}<br><small style="font-size:10px;opacity:0.7">¡Último lugar!</small>`;
         } else if(disponibles < maxPorTurno) {
-          btn.innerHTML = `${info.hora}<br><small style="font-size:10px;opacity:0.7">${disponibles} lugares</small>`;
+          const modalText = info.modalidad ? ` (${info.modalidad})` : '';
+          btn.innerHTML = `${info.hora}<br><small style="font-size:10px;opacity:0.7">${disponibles} lugares${modalText}</small>`;
         } else {
           btn.textContent = info.hora;
         }
         
-        btn.disabled = lleno;
-        if(!lleno) btn.onclick = ()=>selectHora(info.hora,btn);
+        btn.disabled = noDisponible;
+        if(!noDisponible) btn.onclick = ()=>selectHora(info.hora,btn);
         grid.appendChild(btn);
       });
     } else {
@@ -1141,6 +1288,16 @@ function renderSummary(){
 }
 
 // ── Confirm + WA ──
+const BTN_WA_HTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.553 4.1 1.523 5.824L0 24l6.337-1.504A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.85 0-3.583-.5-5.073-1.37l-.364-.214-3.762.893.953-3.667-.237-.378A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg> Confirmar y escribir por WhatsApp';
+
+function restaurarBotonWA() {
+  const btn = document.querySelector('.btn-wa-final');
+  if(btn) {
+    btn.disabled = false;
+    btn.innerHTML = BTN_WA_HTML;
+  }
+}
+
 async function confirmarTurno(){
   showMsg('');
   const btn = document.querySelector('.btn-wa-final');
@@ -1154,45 +1311,75 @@ async function confirmarTurno(){
       body: JSON.stringify(st)
     });
     const data = await r.json();
-    if(!r.ok) { showMsg(data.error||'Error al guardar', 'error'); btn.disabled=false; btn.innerHTML='Confirmar y escribir por WhatsApp'; return; }
+    
+    if(!r.ok) { 
+      showMsg(data.error || 'Error al guardar', 'error'); 
+      restaurarBotonWA();
+      return; 
+    }
 
     // Abrir WhatsApp
     const [y,m,d] = st.fecha.split('-').map(Number);
     const date = new Date(y,m-1,d);
-    const fechaStr = `${DIAS[date.getDay()]} ${d} de ${MESES[m-1]} de ${y}`;
-    const msg = encodeURIComponent(
-      `¡Hola! Reservé un turno para clase particular 📚\n\n` +
-      `👤 Nombre: ${st.nombre}\n` +
-      `📚 Materia: ${st.materia}\n` +
-      `🔄 Modalidad: ${st.modalidad}\n` +
-      `📅 Fecha: ${fechaStr}\n` +
-      `🕑 Horario: ${st.hora} hs\n\n` +
-      `¿Podés confirmarme? ¡Muchas gracias! 💜`
-    );
-    window.open(`https://wa.me/5492926452797?text=${msg}`, '_blank');
+    const fechaStr = DIAS[date.getDay()] + ' ' + d + ' de ' + MESES[m-1] + ' de ' + y;
+    const msgText = '\u00A1Hola! Reserv\u00E9 un turno para clase particular \uD83D\uDCDA\u270F\uFE0F\n\n' +
+      '\uD83D\uDC64 Nombre: ' + st.nombre + '\n' +
+      '\uD83D\uDCDA Materia: ' + st.materia + '\n' +
+      '\uD83D\uDCF1 Modalidad: ' + st.modalidad + '\n' +
+      '\uD83D\uDCC5 Fecha: ' + fechaStr + '\n' +
+      '\u23F0 Horario: ' + st.hora + ' hs\n\n' +
+      '\u00BFPod\u00E9s confirmarme? \u00A1Muchas gracias! \uD83D\uDC9C';
+    const msg = encodeURIComponent(msgText);
+    window.open('https://wa.me/5492926452797?text=' + msg, '_blank');
 
     // Show success
     document.getElementById('step-3').classList.remove('active');
     document.getElementById('success-screen').style.display = 'block';
+    
+    // Restaurar botón para próximo uso
+    restaurarBotonWA();
 
   } catch(e){
+    console.error('Error:', e);
     showMsg('Error de conexión. Intentá de nuevo.','error');
-    btn.disabled=false;
-    btn.textContent='Confirmar y escribir por WhatsApp';
+    restaurarBotonWA();
   }
 }
 
 function resetTodo(){
   st = {nombre:'',materia:'',modalidad:'',fecha:null,hora:''};
-  document.getElementById('inp-nombre').value='';
+  disponibilidadData = null;
+  
+  // Resetear input de nombre y su estilo
+  const inpNombre = document.getElementById('inp-nombre');
+  inpNombre.value = '';
+  inpNombre.style.borderColor = '#e5e7eb';
+  
+  // Resetear botones de selección
   document.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('sel'));
-  document.getElementById('btn0').disabled=true;
-  document.getElementById('success-screen').style.display='none';
-  currentStep=0;
+  
+  // Resetear botones de navegación
+  document.getElementById('btn0').disabled = true;
+  document.getElementById('btn1').disabled = true;
+  document.getElementById('btn2').disabled = true;
+  
+  // Ocultar pantalla de éxito
+  document.getElementById('success-screen').style.display = 'none';
+  
+  // Resetear botón de confirmar WhatsApp
+  restaurarBotonWA();
+  
+  // Volver al paso 0
+  currentStep = 0;
   document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
   document.getElementById('step-0').classList.add('active');
   updateProgress();
+  
+  // Reiniciar calendario
   initCal();
+  
+  // Limpiar mensaje de error si hay
+  showMsg('');
 }
 
 function showMsg(txt, type='error'){
