@@ -115,7 +115,7 @@ body {
 .chat-section {
   background: #ece5dd;
   border-radius: 16px;
-  padding: 10px 8px;
+  padding: 10px 10px;
   margin-bottom: 1rem;
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9b99a' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
@@ -128,12 +128,12 @@ body {
 .chat-row.right { flex-direction: row-reverse; }
 
 .bubble {
-  max-width: 72%;
+  max-width: 88%;
   border-radius: 12px;
-  padding: 6px 10px;
+  padding: 7px 12px;
   font-size: 12px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.5;
   position: relative;
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
@@ -147,27 +147,11 @@ body {
   border-radius: 12px 0px 12px 12px;
   color: #111;
 }
-.bubble-green {
-  background: linear-gradient(135deg, #a7f3d0, #6ee7b7);
-  border-radius: 0px 12px 12px 12px;
-  color: #064e3b;
-}
-.bubble-blue {
-  background: linear-gradient(135deg, #bfdbfe, #93c5fd);
-  border-radius: 12px 0px 12px 12px;
-  color: #1e3a5f;
-}
 .bubble-time {
   font-size: 9px;
   color: #888;
   text-align: right;
-  margin-top: 2px;
-}
-
-.chat-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
+  margin-top: 3px;
 }
 
 /* TE ESPERO */
@@ -197,7 +181,7 @@ body {
   margin: 0 auto;
   background: white;
   padding: 1.5rem 1.2rem;
-  border-top: 4px solid #9333ea;
+  border-top: 3px dashed #d8b4fe;
 }
 
 .booking-heading {
@@ -728,60 +712,52 @@ body {
 
   <!-- Chat bubbles -->
   <div class="chat-section">
-    <div class="chat-grid">
-      <!-- Col izquierda -->
-      <div>
-        <div class="chat-row" style="margin-bottom:5px">
-          <div class="bubble bubble-left">
-            Hola Agus, cómo estás?<br>Aprobé química, gracias<br>por ayudarme estos meses
-            <div class="bubble-time">11:40 ✓✓</div>
-          </div>
-        </div>
-        <div class="chat-row" style="margin-bottom:5px">
-          <div class="bubble bubble-green">
-            Holaa aguuusss<br>Aprobé matemáticasss
-            <div class="bubble-time">12:30 ✓✓</div>
-          </div>
-        </div>
-        <div class="chat-row" style="margin-bottom:5px">
-          <div class="bubble bubble-right">
-            Aprobé todo agus<br>todo gracias a vos ❤️
-            <div class="bubble-time">11:16 ✓✓</div>
-          </div>
-        </div>
-        <div class="chat-row">
-          <div class="bubble bubble-left">
-            hola agus<br>buen<br>aprobé física
-            <div class="bubble-time">11:16 ✓✓</div>
-          </div>
-        </div>
+    <div class="chat-row" style="margin-bottom:5px">
+      <div class="bubble bubble-left">
+        Hola Agus 👋
+        <div class="bubble-time">9:00 ✓✓</div>
       </div>
-      <!-- Col derecha -->
-      <div>
-        <div class="chat-row right" style="margin-bottom:5px">
-          <div class="bubble bubble-right">
-            aguussss aprobeeeeee<br>Gracias x todooo
-            <div class="bubble-time">8:48 ✓✓</div>
-          </div>
-        </div>
-        <div class="chat-row right" style="margin-bottom:5px">
-          <div class="bubble bubble-blue">
-            Holaa aguuusss 12:58<br>Aprobé quimica sos una crack
-            <div class="bubble-time">12:58 ✓✓</div>
-          </div>
-        </div>
-        <div class="chat-row right" style="margin-bottom:5px">
-          <div class="bubble bubble-right">
-            Holaa aguuusss<br>Aprobé matemáticasss
-            <div class="bubble-time">12:30 ✓✓</div>
-          </div>
-        </div>
-        <div class="chat-row right">
-          <div class="bubble bubble-green">
-            Agus aprobé con Cecilia!!!<br>Muchas muchas gracias<br>por ayudarme ❤️❤️
-            <div class="bubble-time">22:06 ✓✓</div>
-          </div>
-        </div>
+    </div>
+    <div class="chat-row" style="margin-bottom:5px">
+      <div class="bubble bubble-left">
+        Hola Agus, cómo estás?<br>Aprobé química, gracias<br>por ayudarme estos meses 🙌
+        <div class="bubble-time">11:40 ✓✓</div>
+      </div>
+    </div>
+    <div class="chat-row right" style="margin-bottom:5px">
+      <div class="bubble bubble-right">
+        aguussss aprobeeeeee<br>Gracias x todooo 🎉
+        <div class="bubble-time">8:48 ✓✓</div>
+      </div>
+    </div>
+    <div class="chat-row" style="margin-bottom:5px">
+      <div class="bubble bubble-left">
+        Holaa aguuusss<br>Aprobé matemáticasss 🥳
+        <div class="bubble-time">12:30 ✓✓</div>
+      </div>
+    </div>
+    <div class="chat-row right" style="margin-bottom:5px">
+      <div class="bubble bubble-right">
+        Aprobé todo agus<br>todo gracias a vos ❤️
+        <div class="bubble-time">11:16 ✓✓</div>
+      </div>
+    </div>
+    <div class="chat-row" style="margin-bottom:5px">
+      <div class="bubble bubble-left">
+        hola agus, buenas<br>aprobé física 💪
+        <div class="bubble-time">11:16 ✓✓</div>
+      </div>
+    </div>
+    <div class="chat-row right" style="margin-bottom:5px">
+      <div class="bubble bubble-right">
+        Holaa aguuusss<br>Aprobé quimica sos una crack ⭐
+        <div class="bubble-time">12:58 ✓✓</div>
+      </div>
+    </div>
+    <div class="chat-row">
+      <div class="bubble bubble-left">
+        Agus aprobé con Cecilia!!!<br>Muchas muchas gracias<br>por ayudarme ❤️❤️
+        <div class="bubble-time">22:06 ✓✓</div>
       </div>
     </div>
   </div>
@@ -1141,6 +1117,13 @@ function renderSummary(){
 }
 
 // ── Confirm + WA ──
+const WA_BTN_LABEL = '<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.553 4.1 1.523 5.824L0 24l6.337-1.504A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.85 0-3.583-.5-5.073-1.37l-.364-.214-3.762.893.953-3.667-.237-.378A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg> Confirmar y escribir por WhatsApp';
+
+function restoreWaButton() {
+  const btn = document.querySelector('.btn-wa-final');
+  if (btn) { btn.disabled = false; btn.innerHTML = WA_BTN_LABEL; }
+}
+
 async function confirmarTurno(){
   showMsg('');
   const btn = document.querySelector('.btn-wa-final');
@@ -1154,7 +1137,7 @@ async function confirmarTurno(){
       body: JSON.stringify(st)
     });
     const data = await r.json();
-    if(!r.ok) { showMsg(data.error||'Error al guardar', 'error'); btn.disabled=false; btn.innerHTML='Confirmar y escribir por WhatsApp'; return; }
+    if(!r.ok) { showMsg(data.error||'Error al guardar', 'error'); restoreWaButton(); return; }
 
     // Abrir WhatsApp
     const [y,m,d] = st.fecha.split('-').map(Number);
@@ -1177,8 +1160,7 @@ async function confirmarTurno(){
 
   } catch(e){
     showMsg('Error de conexión. Intentá de nuevo.','error');
-    btn.disabled=false;
-    btn.textContent='Confirmar y escribir por WhatsApp';
+    restoreWaButton();
   }
 }
 
@@ -1193,6 +1175,8 @@ function resetTodo(){
   document.getElementById('step-0').classList.add('active');
   updateProgress();
   initCal();
+  // Restore the WhatsApp confirm button so it works for the next booking
+  restoreWaButton();
 }
 
 function showMsg(txt, type='error'){
