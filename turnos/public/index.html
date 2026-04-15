@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clases Particulares · Mat · Quím · Fís</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #f0f0f0;
+  min-height: 100vh;
+}
+
+/* ── FLYER SECTION ── */
+.flyer {
+  background: linear-gradient(170deg, #fff9fe 0%, #fef3ff 40%, #f0f4ff 70%, #e8f8ff 100%);
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2rem 1.4rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sparkle decorations */
+.spark {
+  position: absolute;
+  font-size: 18px;
+  animation: sparkle 2s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes sparkle {
+  0%,100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.6; transform: scale(1.3) rotate(20deg); }
+}
+
+/* Header */
+.flyer-header {
+  text-align: center;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.flyer-title {
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+}
+.flyer-title .de { color: #222; }
+.flyer-title .mat { color: #9333ea; }
+.flyer-title .quim { color: #06b6d4; }
+.flyer-title .fis { color: #f59e0b; }
+.flyer-title .clases { color: #ec4899; }
+.flyer-title .part {
+  background: linear-gradient(90deg, #9333ea, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* WA number */
+.wa-number-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: white;
+  border-radius: 50px;
+  padding: 10px 20px;
+  margin: 0.8rem auto;
+  max-width: 280px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+.wa-circle {
+  width: 36px; height: 36px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.wa-num-text {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #111;
+  letter-spacing: 0.5px;
+}
+.spark-inline { font-size: 14px; }
+
+/* Pills */
+.pills-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 0.6rem 0 1rem;
+  flex-wrap: wrap;
+}
+.pill {
+  border-radius: 50px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.pill-pres { background: linear-gradient(90deg,#9333ea,#ec4899); color: white; }
+.pill-virt { background: linear-gradient(90deg,#06b6d4,#3b82f6); color: white; }
+
+/* Chat bubbles section */
+.chat-section {
+  background: #ece5dd;
+  border-radius: 16px;
+  padding: 10px 8px;
+  margin-bottom: 1rem;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9b99a' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.chat-row {
+  display: flex;
+  margin-bottom: 6px;
+  gap: 6px;
+}
+.chat-row.right { flex-direction: row-reverse; }
+
+.bubble {
+  max-width: 72%;
+  border-radius: 12px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+.bubble-left {
+  background: white;
+  border-radius: 0px 12px 12px 12px;
+  color: #111;
+}
+.bubble-right {
+  background: #dcf8c6;
+  border-radius: 12px 0px 12px 12px;
+  color: #111;
+}
+.bubble-green {
+  background: linear-gradient(135deg, #a7f3d0, #6ee7b7);
+  border-radius: 0px 12px 12px 12px;
+  color: #064e3b;
+}
+.bubble-blue {
+  background: linear-gradient(135deg, #bfdbfe, #93c5fd);
+  border-radius: 12px 0px 12px 12px;
+  color: #1e3a5f;
+}
+.bubble-time {
+  font-size: 9px;
+  color: #888;
+  text-align: right;
+  margin-top: 2px;
+}
+
+.chat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+/* TE ESPERO */
+.te-espero {
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 1.8rem;
+  background: linear-gradient(90deg, #9333ea, #ec4899, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0.8rem 0 0.3rem;
+}
+
+/* Deco images (emoji based) */
+.deco-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 0.5rem;
+  font-size: 2rem;
+}
+
+/* ── BOOKING SECTION ── */
+.booking-section {
+  max-width: 480px;
+  margin: 0 auto;
+  background: white;
+  padding: 1.5rem 1.2rem;
+  border-top: 4px solid #9333ea;
+}
+
+.booking-heading {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #9333ea;
+  margin-bottom: 0.3rem;
+}
+.booking-sub {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+/* Progress */
+.progress-bar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 1.5rem;
+}
+.prog-step {
+  flex: 1;
+  height: 4px;
+  border-radius: 4px;
+  background: #e5e7eb;
+  transition: background 0.3s;
+}
+.prog-step.done { background: #9333ea; }
+.prog-step.active { background: #ec4899; }
+
+/* Form */
+.form-step { display: none; }
+.form-step.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+
+.step-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.field { margin-bottom: 1rem; }
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+.field input {
+  width: 100%;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 15px;
+  font-family: 'Nunito', sans-serif;
+  outline: none;
+  transition: border 0.2s;
+  color: #111;
+}
+.field input:focus { border-color: #9333ea; }
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+.option-grid.two { grid-template-columns: 1fr 1fr; }
+
+.opt-btn {
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 10px 6px;
+  background: white;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #444;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+.opt-btn span { display: block; font-size: 22px; margin-bottom: 3px; }
+.opt-btn:hover { border-color: #9333ea; color: #9333ea; }
+.opt-btn.sel { border-color: #9333ea; background: #faf5ff; color: #9333ea; }
+
+/* Calendar */
+.cal-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.cal-arrow {
+  width: 34px; height: 34px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  color: #444;
+}
+.cal-arrow:hover { border-color: #9333ea; color: #9333ea; }
+.cal-month { font-size: 1rem; font-weight: 800; color: #111; }
+
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #999;
+  margin-bottom: 4px;
+}
+.cal-grid-days {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  gap: 3px;
+}
+.cal-cell {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+  border: 2px solid transparent;
+}
+.cal-cell.empty { pointer-events: none; }
+.cal-cell.disabled { color: #ccc; pointer-events: none; }
+.cal-cell.feriado { color: #f87171; pointer-events: none; }
+.cal-cell.feriado::after {
+  content: '';
+  position: absolute;
+  bottom: 2px; left: 50%;
+  transform: translateX(-50%);
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: #f87171;
+}
+.cal-cell.available:hover { background: #faf5ff; border-color: #9333ea; color: #9333ea; }
+.cal-cell.selected { background: #9333ea; color: white; border-color: #9333ea; }
+.cal-cell.today { border-color: #ec4899; color: #ec4899; }
+.cal-cell.today.selected { color: white; }
+.cal-cell.has-turnos::before {
+  content: '';
+  position: absolute;
+  top: 2px; right: 2px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #f59e0b;
+}
+
+.cal-legend {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  font-size: 10px;
+  color: #888;
+}
+.leg-item { display: flex; align-items: center; gap: 4px; }
+.leg-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* Hours */
+.hours-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+.hour-btn {
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 4px;
+  background: white;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #444;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+.hour-btn:hover { border-color: #9333ea; color: #9333ea; }
+.hour-btn.sel { background: #9333ea; color: white; border-color: #9333ea; }
+.hour-btn.ocupado { background: #f3f4f6; color: #ccc; pointer-events: none; text-decoration: line-through; }
+
+/* Summary */
+.summary-card {
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.summary-header {
+  background: linear-gradient(90deg, #9333ea, #ec4899);
+  color: white;
+  padding: 10px 14px;
+  font-weight: 800;
+  font-size: 14px;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 14px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 13px;
+}
+.summary-row:last-child { border-bottom: none; }
+.s-key { color: #888; font-weight: 600; }
+.s-val { font-weight: 800; color: #9333ea; }
+
+/* Buttons */
+.btn-main {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: linear-gradient(90deg, #9333ea, #ec4899);
+  color: white;
+  margin-bottom: 0.5rem;
+}
+.btn-main:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(147,51,234,0.35); }
+.btn-main:active { transform: scale(0.98); }
+.btn-main:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.btn-wa-final {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  background: #25D366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+}
+.btn-wa-final:hover { background: #1da851; transform: translateY(-1px); }
+
+.btn-back {
+  background: none;
+  border: none;
+  color: #9333ea;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  padding: 6px;
+  transition: color 0.2s;
+}
+.btn-back:hover { color: #ec4899; }
+
+/* Error/success msgs */
+.msg {
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  display: none;
+}
+.msg.error { background: #fef2f2; color: #dc2626; border: 1px solid #fca5a5; display: block; }
+.msg.success { background: #f0fdf4; color: #16a34a; border: 1px solid #86efac; display: block; }
+
+/* Success screen */
+.success-screen {
+  display: none;
+  text-align: center;
+  padding: 2rem 0;
+  animation: fadeIn 0.5s ease;
+}
+.success-icon {
+  width: 72px; height: 72px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  margin: 0 auto 1rem;
+}
+.success-screen h2 { font-size: 1.5rem; font-weight: 900; color: #111; margin-bottom: 0.4rem; }
+.success-screen p { color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 1.2rem; }
+
+/* ── ADMIN SECTION ── */
+.admin-section {
+  max-width: 480px;
+  margin: 0 auto;
+  background: #f9f9f9;
+  padding: 1.5rem 1.2rem;
+  border-top: 3px solid #e5e7eb;
+}
+.admin-toggle {
+  text-align: center;
+  color: #aaa;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0.5rem;
+  user-select: none;
+}
+.admin-toggle:hover { color: #9333ea; }
+.admin-panel { display: none; margin-top: 1rem; }
+.admin-panel.open { display: block; }
+.admin-title { font-size: 1rem; font-weight: 800; color: #9333ea; margin-bottom: 1rem; }
+.admin-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.admin-table th { background: #9333ea; color: white; padding: 8px 6px; text-align: left; font-weight: 700; }
+.admin-table td { padding: 7px 6px; border-bottom: 1px solid #e5e7eb; vertical-align: middle; }
+.admin-table tr:hover td { background: #faf5ff; }
+.del-btn {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+}
+.del-btn:hover { background: #dc2626; color: white; }
+.no-turnos { text-align: center; color: #aaa; font-size: 13px; padding: 1rem; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ FLYER ══════════════ -->
+<div class="flyer">
+  <span class="spark" style="top:8px;left:10px;animation-delay:0s">✦</span>
+  <span class="spark" style="top:8px;right:10px;animation-delay:0.5s">✦</span>
+  <span class="spark" style="top:120px;right:8px;animation-delay:1s">✧</span>
+  <span class="spark" style="top:180px;left:8px;animation-delay:1.5s">✦</span>
+
+  <div class="flyer-header">
+    <div class="flyer-title">
+      <span class="part">Clases Particulares</span> <span class="de">de</span><br>
+      <span class="mat">Matemáticas</span><span class="de">, </span><span class="quim">Química</span><span class="de"> y </span><span class="fis">Física</span>
+    </div>
+  </div>
+
+  <div class="wa-number-box">
+    <div class="wa-circle">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.553 4.1 1.523 5.824L0 24l6.337-1.504A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.85 0-3.583-.5-5.073-1.37l-.364-.214-3.762.893.953-3.667-.237-.378A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    </div>
+    <span class="wa-num-text">2926-452797</span>
+    <span class="spark-inline">✦</span>
+  </div>
+
+  <div class="pills-row">
+    <span class="pill pill-pres">¡Clases Presenciales</span>
+    <span class="pill pill-virt">y Virtuales!</span>
+  </div>
+
+  <!-- Chat bubbles -->
+  <div class="chat-section">
+    <div class="chat-grid">
+      <!-- Col izquierda -->
+      <div>
+        <div class="chat-row" style="margin-bottom:5px">
+          <div class="bubble bubble-left">
+            Hola Agus, cómo estás?<br>Aprobé química, gracias<br>por ayudarme estos meses
+            <div class="bubble-time">11:40 ✓✓</div>
+          </div>
+        </div>
+        <div class="chat-row" style="margin-bottom:5px">
+          <div class="bubble bubble-green">
+            Holaa aguuusss<br>Aprobé matemáticasss
+            <div class="bubble-time">12:30 ✓✓</div>
+          </div>
+        </div>
+        <div class="chat-row" style="margin-bottom:5px">
+          <div class="bubble bubble-right">
+            Aprobé todo agus<br>todo gracias a vos ❤️
+            <div class="bubble-time">11:16 ✓✓</div>
+          </div>
+        </div>
+        <div class="chat-row">
+          <div class="bubble bubble-left">
+            hola agus<br>buen<br>aprobé física
+            <div class="bubble-time">11:16 ✓✓</div>
+          </div>
+        </div>
+      </div>
+      <!-- Col derecha -->
+      <div>
+        <div class="chat-row right" style="margin-bottom:5px">
+          <div class="bubble bubble-right">
+            aguussss aprobeeeeee<br>Gracias x todooo
+            <div class="bubble-time">8:48 ✓✓</div>
+          </div>
+        </div>
+        <div class="chat-row right" style="margin-bottom:5px">
+          <div class="bubble bubble-blue">
+            Holaa aguuusss 12:58<br>Aprobé quimica sos una crack
+            <div class="bubble-time">12:58 ✓✓</div>
+          </div>
+        </div>
+        <div class="chat-row right" style="margin-bottom:5px">
+          <div class="bubble bubble-right">
+            Holaa aguuusss<br>Aprobé matemáticasss
+            <div class="bubble-time">12:30 ✓✓</div>
+          </div>
+        </div>
+        <div class="chat-row right">
+          <div class="bubble bubble-green">
+            Agus aprobé con Cecilia!!!<br>Muchas muchas gracias<br>por ayudarme ❤️❤️
+            <div class="bubble-time">22:06 ✓✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="te-espero">¡TE ESPERO!</div>
+
+  <div class="deco-row">
+    <span>📚</span>
+    <span>⚗️</span>
+    <span>📐</span>
+    <span>⚡</span>
+    <span>🔬</span>
+  </div>
+</div>
+
+<!-- ══════════════ BOOKING ══════════════ -->
+<div class="booking-section">
+  <div class="booking-heading">📅 Reservá tu turno</div>
+  <div class="booking-sub">Lunes a viernes · 14:00 a 18:00 hs · Precios muy accesibles</div>
+
+  <div class="progress-bar">
+    <div class="prog-step active" id="ps0"></div>
+    <div class="prog-step" id="ps1"></div>
+    <div class="prog-step" id="ps2"></div>
+    <div class="prog-step" id="ps3"></div>
+  </div>
+
+  <div id="msg-global" class="msg"></div>
+
+  <!-- STEP 0: Datos personales -->
+  <div class="form-step active" id="step-0">
+    <div class="step-title">👤 Tus datos</div>
+    <div class="field">
+      <label>Tu nombre completo</label>
+      <input id="inp-nombre" type="text" placeholder="Ej: Valentina García" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Materia</label>
+      <div class="option-grid">
+        <button class="opt-btn" onclick="pick('materia',this,'Matemáticas')"><span>📐</span>Matemáticas</button>
+        <button class="opt-btn" onclick="pick('materia',this,'Química')"><span>⚗️</span>Química</button>
+        <button class="opt-btn" onclick="pick('materia',this,'Física')"><span>⚡</span>Física</button>
+      </div>
+    </div>
+    <div class="field">
+      <label>Modalidad</label>
+      <div class="option-grid two">
+        <button class="opt-btn" onclick="pick('modalidad',this,'Presencial')"><span>🏠</span>Presencial</button>
+        <button class="opt-btn" onclick="pick('modalidad',this,'Virtual')"><span>💻</span>Virtual</button>
+      </div>
+    </div>
+    <button class="btn-main" id="btn0" onclick="goTo(1)" disabled>Elegir fecha →</button>
+  </div>
+
+  <!-- STEP 1: Fecha -->
+  <div class="form-step" id="step-1">
+    <div class="step-title">📅 Elegí la fecha</div>
+    <div class="cal-nav-row">
+      <button class="cal-arrow" onclick="prevMonth()">‹</button>
+      <div class="cal-month" id="cal-title"></div>
+      <button class="cal-arrow" onclick="nextMonth()">›</button>
+    </div>
+    <div class="cal-weekdays">
+      <div>Dom</div><div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div>
+    </div>
+    <div class="cal-grid-days" id="cal-days"></div>
+    <div class="cal-legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#f87171"></div>Feriado</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#f59e0b"></div>Turnos cargados</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#ec4899;border-radius:2px;width:12px;height:8px"></div>Hoy</div>
+    </div>
+    <button class="btn-main" id="btn1" onclick="goTo(2)" disabled style="margin-top:1rem">Elegir horario →</button>
+    <button class="btn-back" onclick="goTo(0)">← Volver</button>
+  </div>
+
+  <!-- STEP 2: Horario -->
+  <div class="form-step" id="step-2">
+    <div class="step-title">🕑 Elegí el horario</div>
+    <div id="loading-horas" style="text-align:center;color:#aaa;font-size:13px;padding:1rem">Cargando disponibilidad...</div>
+    <div class="hours-grid" id="hours-grid" style="display:none"></div>
+    <button class="btn-main" id="btn2" onclick="goTo(3)" disabled>Ver resumen →</button>
+    <button class="btn-back" onclick="goTo(1)">← Volver</button>
+  </div>
+
+  <!-- STEP 3: Confirmar -->
+  <div class="form-step" id="step-3">
+    <div class="step-title">✅ Confirmá tu reserva</div>
+    <div class="summary-card">
+      <div class="summary-header">📋 Resumen del turno</div>
+      <div id="summary-body"></div>
+    </div>
+    <button class="btn-wa-final" onclick="confirmarTurno()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.553 4.1 1.523 5.824L0 24l6.337-1.504A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.85 0-3.583-.5-5.073-1.37l-.364-.214-3.762.893.953-3.667-.237-.378A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Confirmar y escribir por WhatsApp
+    </button>
+    <button class="btn-back" onclick="goTo(2)">← Volver</button>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="success-screen">
+    <div class="success-icon">🎉</div>
+    <h2>¡Turno reservado!</h2>
+    <p>Tu turno quedó guardado.<br>Te redirigimos a WhatsApp para confirmar con la profe.</p>
+    <button class="btn-main" onclick="resetTodo()">Reservar otro turno</button>
+  </div>
+</div>
+
+<!-- ══════════════ ADMIN ══════════════ -->
+<div class="admin-section">
+  <div class="admin-toggle" onclick="toggleAdmin()">⚙️ Panel de administración (solo para la profe)</div>
+  <div class="admin-panel" id="admin-panel">
+    <div class="admin-title">📋 Turnos registrados</div>
+    <div id="admin-content"><div class="no-turnos">Cargando...</div></div>
+  </div>
+</div>
+
+<script>
+const API = ''; // mismo origen
+
+// ── State ──
+let st = { nombre:'', materia:'', modalidad:'', fecha:null, hora:'' };
+let calY, calM, turnosMes = {};
+let currentStep = 0;
+
+const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const HORAS = ['14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30'];
+
+// Feriados Argentina 2025-2026
+const FERIADOS = new Set([
+  '2025-01-01','2025-03-03','2025-03-04','2025-03-24','2025-04-02',
+  '2025-04-17','2025-04-18','2025-05-01','2025-05-25','2025-06-16',
+  '2025-06-20','2025-07-09','2025-08-17','2025-10-12','2025-11-20',
+  '2025-12-08','2025-12-25',
+  '2026-01-01','2026-02-16','2026-02-17','2026-03-23','2026-03-24',
+  '2026-04-02','2026-04-03','2026-05-01','2026-05-25','2026-06-15',
+  '2026-06-20','2026-07-09','2026-08-17','2026-10-12','2026-11-20',
+  '2026-12-08','2026-12-25'
+]);
+
+function pad(n){ return String(n).padStart(2,'0'); }
+function toKey(y,m,d){ return `${y}-${pad(m+1)}-${pad(d)}`; }
+
+// ── Navigation ──
+function goTo(n) {
+  document.getElementById('step-'+currentStep).classList.remove('active');
+  currentStep = n;
+  document.getElementById('step-'+currentStep).classList.add('active');
+  updateProgress();
+  showMsg('');
+  if(n===1) renderCal();
+  if(n===2) loadHoras();
+  if(n===3) renderSummary();
+}
+
+function updateProgress() {
+  for(let i=0;i<4;i++){
+    const el = document.getElementById('ps'+i);
+    el.className = 'prog-step' + (i<currentStep?' done':i===currentStep?' active':'');
+  }
+}
+
+// ── Step 0 ──
+function pick(group, btn, val) {
+  document.querySelectorAll(`[onclick*="pick('${group}"]`).forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  st[group] = val;
+  checkStep0();
+}
+
+document.getElementById('inp-nombre').addEventListener('input', function(){
+  st.nombre = this.value.trim();
+  checkStep0();
+});
+
+function checkStep0(){
+  document.getElementById('btn0').disabled = !(st.nombre.length>1 && st.materia && st.modalidad);
+}
+
+// ── Calendar ──
+function initCal(){
+  const now = new Date();
+  calY = now.getFullYear();
+  calM = now.getMonth();
+}
+initCal();
+
+function prevMonth(){ calM--; if(calM<0){calM=11;calY--;} renderCal(); }
+function nextMonth(){ calM++; if(calM>11){calM=0;calY++;} renderCal(); }
+
+async function renderCal(){
+  document.getElementById('cal-title').textContent = MESES[calM] + ' ' + calY;
+  // Fetch turnos del mes
+  try {
+    const r = await fetch(`${API}/api/turnos?year=${calY}&month=${calM+1}`);
+    const data = await r.json();
+    turnosMes = {};
+    data.forEach(t => { turnosMes[t.fecha] = (turnosMes[t.fecha]||0)+1; });
+  } catch(e){ turnosMes = {}; }
+
+  const grid = document.getElementById('cal-days');
+  grid.innerHTML = '';
+  const today = new Date(); today.setHours(0,0,0,0);
+  const firstDay = new Date(calY,calM,1).getDay();
+  const daysInMonth = new Date(calY,calM+1,0).getDate();
+
+  for(let i=0;i<firstDay;i++){
+    const el = document.createElement('div');
+    el.className = 'cal-cell empty';
+    grid.appendChild(el);
+  }
+
+  for(let d=1;d<=daysInMonth;d++){
+    const el = document.createElement('div');
+    el.textContent = d;
+    const date = new Date(calY,calM,d); date.setHours(0,0,0,0);
+    const key = toKey(calY,calM,d);
+    const dow = date.getDay();
+    const isPast = date < today;
+    const isFeriado = FERIADOS.has(key);
+    const isWeekend = dow===0||dow===6;
+    const isToday = date.getTime()===today.getTime();
+    const isSelected = st.fecha===key;
+    const hasTurnos = turnosMes[key]>0;
+
+    let cls = 'cal-cell';
+    if(isPast||isWeekend) cls+=' disabled';
+    else if(isFeriado) cls+=' feriado';
+    else cls+=' available';
+    if(isToday) cls+=' today';
+    if(isSelected) cls+=' selected';
+    if(hasTurnos && !isPast && !isWeekend && !isFeriado) cls+=' has-turnos';
+
+    el.className = cls;
+    if(!isPast && !isFeriado && !isWeekend){
+      el.onclick = () => selectDay(key, el);
+    }
+    grid.appendChild(el);
+  }
+}
+
+function selectDay(key, el){
+  document.querySelectorAll('.cal-cell.selected').forEach(e=>e.classList.remove('selected'));
+  el.classList.add('selected');
+  st.fecha = key;
+  st.hora = '';
+  document.getElementById('btn1').disabled = false;
+}
+
+// ── Hours ──
+async function loadHoras(){
+  const grid = document.getElementById('hours-grid');
+  const loading = document.getElementById('loading-horas');
+  grid.style.display = 'none';
+  loading.style.display = 'block';
+  document.getElementById('btn2').disabled = true;
+
+  try {
+    const r = await fetch(`${API}/api/disponibilidad?fecha=${st.fecha}`);
+    const data = await r.json();
+    grid.innerHTML = '';
+    HORAS.forEach(h => {
+      const btn = document.createElement('button');
+      const ocupado = data.ocupados.includes(h);
+      btn.className = 'hour-btn' + (ocupado?' ocupado':'') + (st.hora===h?' sel':'');
+      btn.textContent = h;
+      btn.disabled = ocupado;
+      if(!ocupado) btn.onclick = ()=>selectHora(h,btn);
+      grid.appendChild(btn);
+    });
+    loading.style.display = 'none';
+    grid.style.display = 'grid';
+  } catch(e){
+    loading.textContent = 'Error al cargar horarios. Intentá de nuevo.';
+  }
+}
+
+function selectHora(h, btn){
+  document.querySelectorAll('.hour-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  st.hora = h;
+  document.getElementById('btn2').disabled = false;
+}
+
+// ── Summary ──
+function renderSummary(){
+  const [y,m,d] = st.fecha.split('-').map(Number);
+  const date = new Date(y,m-1,d);
+  const fechaStr = `${DIAS[date.getDay()]} ${d} de ${MESES[m-1]} de ${y}`;
+
+  document.getElementById('summary-body').innerHTML = `
+    <div class="summary-row"><span class="s-key">👤 Nombre</span><span class="s-val">${st.nombre}</span></div>
+    <div class="summary-row"><span class="s-key">📚 Materia</span><span class="s-val">${st.materia}</span></div>
+    <div class="summary-row"><span class="s-key">🔄 Modalidad</span><span class="s-val">${st.modalidad}</span></div>
+    <div class="summary-row"><span class="s-key">📅 Fecha</span><span class="s-val">${fechaStr}</span></div>
+    <div class="summary-row"><span class="s-key">🕑 Horario</span><span class="s-val">${st.hora} hs</span></div>
+  `;
+}
+
+// ── Confirm + WA ──
+async function confirmarTurno(){
+  showMsg('');
+  const btn = document.querySelector('.btn-wa-final');
+  btn.disabled = true;
+  btn.textContent = 'Guardando...';
+
+  try {
+    const r = await fetch(`${API}/api/turnos`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(st)
+    });
+    const data = await r.json();
+    if(!r.ok) { showMsg(data.error||'Error al guardar', 'error'); btn.disabled=false; btn.innerHTML='Confirmar y escribir por WhatsApp'; return; }
+
+    // Abrir WhatsApp
+    const [y,m,d] = st.fecha.split('-').map(Number);
+    const date = new Date(y,m-1,d);
+    const fechaStr = `${DIAS[date.getDay()]} ${d} de ${MESES[m-1]} de ${y}`;
+    const msg = encodeURIComponent(
+      `¡Hola! Reservé un turno para clase particular 📚\n\n` +
+      `👤 Nombre: ${st.nombre}\n` +
+      `📚 Materia: ${st.materia}\n` +
+      `🔄 Modalidad: ${st.modalidad}\n` +
+      `📅 Fecha: ${fechaStr}\n` +
+      `🕑 Horario: ${st.hora} hs\n\n` +
+      `¿Podés confirmarme? ¡Muchas gracias! 💜`
+    );
+    window.open(`https://wa.me/5492926452797?text=${msg}`, '_blank');
+
+    // Show success
+    document.getElementById('step-3').classList.remove('active');
+    document.getElementById('success-screen').style.display = 'block';
+
+  } catch(e){
+    showMsg('Error de conexión. Intentá de nuevo.','error');
+    btn.disabled=false;
+    btn.textContent='Confirmar y escribir por WhatsApp';
+  }
+}
+
+function resetTodo(){
+  st = {nombre:'',materia:'',modalidad:'',fecha:null,hora:''};
+  document.getElementById('inp-nombre').value='';
+  document.querySelectorAll('.opt-btn').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('btn0').disabled=true;
+  document.getElementById('success-screen').style.display='none';
+  currentStep=0;
+  document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step-0').classList.add('active');
+  updateProgress();
+  initCal();
+}
+
+function showMsg(txt, type='error'){
+  const el = document.getElementById('msg-global');
+  el.textContent = txt;
+  el.className = 'msg' + (txt?' '+type:'');
+}
+
+// ── Admin ──
+let adminOpen = false;
+function toggleAdmin(){
+  adminOpen = !adminOpen;
+  document.getElementById('admin-panel').className = 'admin-panel' + (adminOpen?' open':'');
+  if(adminOpen) loadAdmin();
+}
+
+async function loadAdmin(){
+  try {
+    const r = await fetch(`${API}/api/admin/turnos`);
+    const turnos = await r.json();
+    const cont = document.getElementById('admin-content');
+    if(!turnos.length){ cont.innerHTML='<div class="no-turnos">No hay turnos registrados todavía.</div>'; return; }
+
+    let html = `<table class="admin-table">
+      <thead><tr><th>Nombre</th><th>Materia</th><th>Fecha</th><th>Hora</th><th>Modal.</th><th></th></tr></thead><tbody>`;
+    turnos.forEach(t=>{
+      html+=`<tr>
+        <td>${t.nombre}</td>
+        <td>${t.materia}</td>
+        <td>${t.fecha}</td>
+        <td>${t.hora}</td>
+        <td>${t.modalidad.charAt(0)}</td>
+        <td><button class="del-btn" onclick="delTurno('${t._id}')">✕</button></td>
+      </tr>`;
+    });
+    html+='</tbody></table>';
+    cont.innerHTML=html;
+  } catch(e){ document.getElementById('admin-content').innerHTML='<div class="no-turnos">Error al cargar.</div>'; }
+}
+
+async function delTurno(id){
+  if(!confirm('¿Eliminar este turno?')) return;
+  await fetch(`${API}/api/turnos/${id}`,{method:'DELETE'});
+  loadAdmin();
+}
+</script>
+</body>
+</html>
