@@ -13,7 +13,11 @@ const MAX_POR_TURNO = 3;
 const db = Datastore.create({ filename: path.join(__dirname, 'turnos.db'), autoload: true });
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '1mb' }));
+app.use((req, res, next) => {
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  next();
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
 // GET turnos ocupados de un mes (para marcar en calendario)
@@ -26,8 +30,8 @@ app.get('/api/turnos', async (req, res) => {
     }
     const turnos = await db.find(query).sort({ fecha: 1, hora: 1 });
     
-    // Calcular qué días están completamente llenos (todas las 8 horas con 3 personas = 24 turnos)
-    const TOTAL_HORAS = 8;
+    // Calcular qué días están completamente llenos (5 horas con 3 personas = 15 turnos)
+    const TOTAL_HORAS = 5;
     const turnosPorDia = {};
     turnos.forEach(t => {
       turnosPorDia[t.fecha] = (turnosPorDia[t.fecha] || 0) + 1;
@@ -56,7 +60,8 @@ app.get('/api/disponibilidad', async (req, res) => {
       conteoHoras[t.hora] = (conteoHoras[t.hora] || 0) + 1;
     });
     
-    const HORAS = ['14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30'];
+    // Horarios cada 1 hora (14:00 a 18:00)
+    const HORAS = ['14:00','15:00','16:00','17:00','18:00'];
     
     // Crear array con info detallada de cada hora
     const horasInfo = HORAS.map(hora => ({
@@ -76,18 +81,41 @@ app.get('/api/disponibilidad', async (req, res) => {
   }
 });
 
+// Función para normalizar materias
+function normalizarMateria(materia) {
+  const m = materia.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (m.includes('matem')) return 'Matemáticas';
+  if (m.includes('quim')) return 'Química';
+  if (m.includes('fis')) return 'Física';
+  return materia;
+}
+
 // POST nuevo turno
 app.post('/api/turnos', async (req, res) => {
   try {
-    const { nombre, materia, modalidad, fecha, hora } = req.body;
+    let { nombre, materia, modalidad, fecha, hora } = req.body;
     if (!nombre || !materia || !modalidad || !fecha || !hora) {
       return res.status(400).json({ error: 'Faltan datos' });
     }
+    
+    // Normalizar materia para evitar problemas de encoding
+    materia = normalizarMateria(materia);
+    
     // Verificar que no esté lleno (máximo 3 personas por turno)
     const turnosExistentes = await db.find({ fecha, hora });
     if (turnosExistentes.length >= MAX_POR_TURNO) {
       return res.status(409).json({ error: `Ese horario ya tiene ${MAX_POR_TURNO} personas registradas` });
     }
+    
+    // Verificar que el mismo chico no tenga otro turno en la misma fecha+hora
+    const nombreNormalizado = nombre.trim().toLowerCase();
+    const turnoMismoChico = turnosExistentes.find(t => 
+      t.nombre.trim().toLowerCase() === nombreNormalizado
+    );
+    if (turnoMismoChico) {
+      return res.status(409).json({ error: `Ya tenés un turno reservado a las ${hora} ese día` });
+    }
+    
     // Verificar que sea lunes-viernes
     const d = new Date(fecha + 'T12:00:00');
     const dow = d.getDay();
@@ -141,6 +169,31 @@ app.get('/api/admin/resumen', async (req, res) => {
     }));
     
     res.json({ fecha, turnos: resumen, total: turnos.length });
+  } catch(e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// POST admin - corregir encoding de materias
+app.post('/api/admin/fix-encoding', async (req, res) => {
+  try {
+    const turnos = await db.find({});
+    let corregidos = 0;
+    
+    for (const t of turnos) {
+      let nuevaMateria = t.materia;
+      // Corregir materias con encoding malo
+      if (t.materia.includes('�') || t.materia.includes('Ã')) {
+        if (t.materia.includes('Matem')) nuevaMateria = 'Matemáticas';
+        else if (t.materia.includes('Qu')) nuevaMateria = 'Química';
+        else if (t.materia.includes('F')) nuevaMateria = 'Física';
+        
+        await db.update({ _id: t._id }, { $set: { materia: nuevaMateria } });
+        corregidos++;
+      }
+    }
+    
+    res.json({ ok: true, corregidos });
   } catch(e) {
     res.status(500).json({ error: e.message });
   }
