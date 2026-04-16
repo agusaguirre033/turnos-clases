@@ -17,10 +17,10 @@ body {
 
 /* ── FLYER SECTION ── */
 .flyer {
-  background: linear-gradient(170deg, #fff9fe 0%, #fef3ff 40%, #f0f4ff 70%, #e8f8ff 100%);
+  background: linear-gradient(180deg, #fdf4ff 0%, #fce7f3 30%, #fbcfe8 60%, #f5d0fe 100%);
   max-width: 480px;
   margin: 0 auto;
-  padding: 2rem 1.4rem 1.5rem;
+  padding: 1.5rem 1.2rem 1.5rem;
   position: relative;
   overflow: hidden;
 }
@@ -51,15 +51,16 @@ body {
   margin-bottom: 0.2rem;
 }
 .flyer-title .de { color: #222; }
-.flyer-title .mat { color: #9333ea; }
-.flyer-title .quim { color: #06b6d4; }
-.flyer-title .fis { color: #f59e0b; }
-.flyer-title .clases { color: #ec4899; }
+.flyer-title .mat { color: #9333ea; font-weight: 900; }
+.flyer-title .quim { color: #06b6d4; font-weight: 900; }
+.flyer-title .fis { color: #f59e0b; font-weight: 900; }
+.flyer-title .clases { 
+  color: #ec4899; 
+  font-weight: 900;
+}
 .flyer-title .part {
-  background: linear-gradient(90deg, #9333ea, #ec4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ec4899;
+  font-weight: 900;
 }
 
 /* WA number */
@@ -67,16 +68,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   background: white;
   border-radius: 50px;
-  padding: 10px 20px;
-  margin: 0.8rem auto;
-  max-width: 280px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  padding: 12px 24px;
+  margin: 1rem auto;
+  max-width: 300px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 3px solid #f3f4f6;
 }
 .wa-circle {
-  width: 36px; height: 36px;
+  width: 38px; height: 38px;
   background: #25D366;
   border-radius: 50%;
   display: flex;
@@ -85,10 +87,10 @@ body {
   flex-shrink: 0;
 }
 .wa-num-text {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 900;
   color: #111;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 .spark-inline { font-size: 14px; }
 
@@ -96,140 +98,108 @@ body {
 .pills-row {
   display: flex;
   justify-content: center;
-  gap: 6px;
-  margin: 0.6rem 0 1rem;
+  gap: 8px;
+  margin: 0.8rem 0 1rem;
   flex-wrap: wrap;
 }
 .pill {
   border-radius: 50px;
-  padding: 5px 14px;
-  font-size: 12px;
+  padding: 8px 18px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
-.pill-pres { background: linear-gradient(90deg,#9333ea,#ec4899); color: white; }
-.pill-virt { background: linear-gradient(90deg,#06b6d4,#3b82f6); color: white; }
+.pill-pres { background: #ec4899; color: white; }
+.pill-virt { background: #06b6d4; color: white; }
 
 /* Chat bubbles section - ESTILO FLYER */
 .chat-section {
-  background: linear-gradient(135deg, #faf5ff 0%, #fdf4ff 30%, #fff1f2 60%, #fef3c7 100%);
-  border-radius: 24px;
-  padding: 25px 18px 70px;
-  margin-bottom: 1rem;
+  background: transparent;
+  padding: 15px 10px 60px;
+  margin-bottom: 0.5rem;
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(147, 51, 234, 0.08);
-}
-
-/* Fondo decorativo con patrón sutil */
-.chat-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(circle at 20% 30%, rgba(147, 51, 234, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.03) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Símbolos matemáticos flotantes */
-.chat-section::after {
-  content: "∑ π √ × ÷ ∫ Δ α β ∞ ± ≈";
-  position: absolute;
-  top: 10px;
-  left: 0;
-  right: 0;
-  font-size: 16px;
-  color: rgba(147, 51, 234, 0.06);
-  word-spacing: 25px;
-  letter-spacing: 8px;
-  text-align: center;
-  pointer-events: none;
-  z-index: 0;
+  overflow: visible;
 }
 
 /* Iconos decorativos */
 .chat-deco-left {
   position: absolute;
-  bottom: 12px;
-  left: 15px;
-  font-size: 2.8rem;
+  bottom: 8px;
+  left: 10px;
+  font-size: 2.2rem;
   z-index: 3;
-  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));
 }
 .chat-deco-right {
   position: absolute;
-  bottom: 12px;
-  right: 15px;
-  font-size: 2.8rem;
+  bottom: 8px;
+  right: 10px;
+  font-size: 2.2rem;
   z-index: 3;
-  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));
 }
 
 .chat-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px 15px;
   position: relative;
   z-index: 2;
 }
 
+.chat-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .chat-row {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   gap: 6px;
 }
 .chat-row.right { flex-direction: row-reverse; }
 
-/* BURBUJAS MÁS ALARGADAS */
+/* BURBUJAS ESTILO IMAGEN */
 .bubble {
   max-width: 100%;
-  min-width: 160px;
-  border-radius: 20px;
-  padding: 10px 22px;
-  font-size: 11px;
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: 11.5px;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.35;
   position: relative;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
   color: #333;
-  white-space: nowrap;
 }
 
-/* 6 DEGRADÉS VIBRANTES */
+/* COLORES EXACTOS DE LA IMAGEN */
 .bubble-mint {
-  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  background: linear-gradient(135deg, #a7f3d0 0%, #6ee7b7 100%);
 }
 .bubble-sunset {
-  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  background: linear-gradient(135deg, #fde047 0%, #fb923c 100%);
 }
 .bubble-fire {
-  background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%);
+  background: linear-gradient(135deg, #fb923c 0%, #f472b6 100%);
 }
 .bubble-ocean {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
+  background: linear-gradient(135deg, #93c5fd 0%, #c4b5fd 100%);
+  color: #333;
 }
 .bubble-candy {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: #fff;
+  background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
+  color: #333;
 }
 .bubble-clean {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
 /* Compatibilidad con clases anteriores */
 .bubble-left {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid #e0e0e0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
 }
 .bubble-right {
   background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
@@ -240,15 +210,15 @@ body {
   color: #fff;
 }
 .bubble-blue {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  color: #fff;
+  background: linear-gradient(135deg, #93c5fd 0%, #c4b5fd 100%);
+  color: #333;
 }
 
 .bubble-time {
-  font-size: 10px;
+  font-size: 9px;
   color: #666;
   display: inline;
-  margin-left: 8px;
+  margin-left: 6px;
   font-weight: 500;
 }
 
@@ -783,15 +753,15 @@ body {
 
 <!-- ══════════════ FLYER ══════════════ -->
 <div class="flyer">
-  <span class="spark" style="top:8px;left:10px;animation-delay:0s">✦</span>
-  <span class="spark" style="top:8px;right:10px;animation-delay:0.5s">✦</span>
-  <span class="spark" style="top:120px;right:8px;animation-delay:1s">✧</span>
-  <span class="spark" style="top:180px;left:8px;animation-delay:1.5s">✦</span>
+  <span class="spark" style="top:12px;left:12px;animation-delay:0s">✦</span>
+  <span class="spark" style="top:12px;right:12px;animation-delay:0.5s">✦</span>
+  <span class="spark" style="top:100px;left:6px;animation-delay:1s">✧</span>
+  <span class="spark" style="top:160px;right:6px;animation-delay:1.5s">☆</span>
 
   <div class="flyer-header">
     <div class="flyer-title">
-      <span class="part">Clases Particulares</span> <span class="de">de</span><br>
-      <span class="mat">Matemáticas</span><span class="de">, </span><span class="quim">Química</span><span class="de"> y </span><span class="fis">Física</span>
+      <span class="clases">Clases Particulares</span> <span class="de">de</span><br>
+      <span class="mat">Matemáticas,</span> <span class="quim">Química</span> <span class="de">y</span> <span class="fis">Física</span>
     </div>
   </div>
 
@@ -804,8 +774,8 @@ body {
   </div>
 
   <div class="pills-row">
-    <span class="pill pill-pres">¡Clases Presenciales</span>
-    <span class="pill pill-virt">y Virtuales!</span>
+    <span class="pill pill-pres">¡CLASES PRESENCIALES</span>
+    <span class="pill pill-virt">Y VIRTUALES!</span>
   </div>
 
   <!-- Chat bubbles -->
@@ -815,70 +785,44 @@ body {
     
     <div class="chat-grid">
       <!-- Col izquierda -->
-      <div>
-        <div class="chat-row">
-          <div class="bubble bubble-clean">
-            Hola Agus, cómo estás? Aprobé química, gracias por ayudarme estos meses
-            <span class="bubble-time">11:40</span>
-          </div>
+      <div class="chat-col">
+        <div class="bubble bubble-clean">
+          Hola Agus, cómo estás? Aprobé química, gracias por ayudarme estos meses
+          <span class="bubble-time">11:40</span>
         </div>
-        <div class="chat-row">
-          <div class="bubble bubble-mint">
-            Holaa aguuusss Aprobé matemáticasss
-            <span class="bubble-time">12:30</span>
-          </div>
+        <div class="bubble bubble-mint">
+          Holaa aguuusss Aprobé matemáticasss
+          <span class="bubble-time">12:30</span>
         </div>
-        <div class="chat-row">
-          <div class="bubble bubble-sunset">
-            Aprobé todo agus todo gracias a vos ❤️
-            <span class="bubble-time">11:16</span>
-          </div>
+        <div class="bubble bubble-sunset">
+          Aprobé todo agus todo gracias a vos ❤️
+          <span class="bubble-time">11:16</span>
         </div>
-        <div class="chat-row">
-          <div class="bubble bubble-clean">
-            hola agus · buen · aprobé física
-            <span class="bubble-time">11:16</span>
-          </div>
+        <div class="bubble bubble-clean">
+          hola agus · buen · aprobé física
+          <span class="bubble-time">11:16</span>
         </div>
       </div>
       <!-- Col derecha -->
-      <div>
-        <div class="chat-row right">
-          <div class="bubble bubble-ocean">
-            aguussss aprobeeeeee Gracias x todooo
-            <span class="bubble-time">8:48</span>
-          </div>
+      <div class="chat-col">
+        <div class="bubble bubble-ocean">
+          aguussss aprobeeeeee Gracias x todooo
+          <span class="bubble-time">8:48</span>
         </div>
-        <div class="chat-row right">
-          <div class="bubble bubble-clean">
-            Holaa aguuusss Aprobé química sos una crack
-            <span class="bubble-time">12:58</span>
-          </div>
+        <div class="bubble bubble-clean">
+          Holaa aguuusss Aprobé química sos una crack
+          <span class="bubble-time">12:58</span>
         </div>
-        <div class="chat-row right">
-          <div class="bubble bubble-ocean">
-            Holaa aguuusss Aprobé matemáticasss
-            <span class="bubble-time">12:30</span>
-          </div>
+        <div class="bubble bubble-ocean">
+          Holaa aguuusss Aprobé matemáticasss
+          <span class="bubble-time">12:30</span>
         </div>
-        <div class="chat-row right">
-          <div class="bubble bubble-candy">
-            Agus aprobé con Cecilia!!! Muchas muchas gracias por ayudarme ❤️❤️
-            <span class="bubble-time">22:06</span>
-          </div>
+        <div class="bubble bubble-candy">
+          Agus aprobé con Cecilia!!! Muchas muchas gracias por ayudarme ❤️❤️
+          <span class="bubble-time">22:06</span>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="te-espero">¡TE ESPERO!</div>
-
-  <div class="deco-row">
-    <span>📚</span>
-    <span>⚗️</span>
-    <span>📐</span>
-    <span>⚡</span>
-    <span>🔬</span>
   </div>
 </div>
 
@@ -1157,36 +1101,40 @@ async function loadHoras(){
   document.getElementById('btn2').disabled = true;
 
   try {
-    const r = await fetch(`${API}/api/disponibilidad?fecha=${st.fecha}`);
+    const params = new URLSearchParams({fecha: st.fecha});
+    if(st.nombre) params.set('nombre', st.nombre);
+    if(st.modalidad) params.set('modalidad', st.modalidad);
+    const r = await fetch(`${API}/api/disponibilidad?${params}`);
     const data = await r.json();
     const maxPorTurno = data.maxPorTurno || 3;
     grid.innerHTML = '';
     
-    // Usar horasInfo si existe para mostrar lugares disponibles
     if(data.horasInfo) {
       data.horasInfo.forEach(info => {
         const btn = document.createElement('button');
         const lleno = info.lleno;
+        const bloqueado = info.bloqueado;
+        const noDisponible = lleno || bloqueado;
         const disponibles = info.disponibles;
-        btn.className = 'hour-btn' + (lleno?' ocupado':'') + (st.hora===info.hora?' sel':'');
+        btn.className = 'hour-btn' + (noDisponible?' ocupado':'') + (st.hora===info.hora && !noDisponible?' sel':'');
         
-        // Mostrar hora y lugares disponibles
         if(lleno) {
-          btn.textContent = info.hora;
+          btn.innerHTML = `${info.hora}<br><small style="font-size:9px;opacity:0.7">Completo</small>`;
+        } else if(bloqueado) {
+          btn.innerHTML = `${info.hora}<br><small style="font-size:9px;opacity:0.7">${info.motivoBloqueo}</small>`;
         } else if(disponibles === 1) {
-          btn.innerHTML = `${info.hora}<br><small style="font-size:10px;opacity:0.7">¡Último lugar!</small>`;
+          btn.innerHTML = `${info.hora}<br><small style="font-size:10px;opacity:0.7">\u00A1\u00DAltimo lugar!</small>`;
         } else if(disponibles < maxPorTurno) {
           btn.innerHTML = `${info.hora}<br><small style="font-size:10px;opacity:0.7">${disponibles} lugares</small>`;
         } else {
           btn.textContent = info.hora;
         }
         
-        btn.disabled = lleno;
-        if(!lleno) btn.onclick = ()=>selectHora(info.hora,btn);
+        btn.disabled = noDisponible;
+        if(!noDisponible) btn.onclick = ()=>selectHora(info.hora,btn);
         grid.appendChild(btn);
       });
     } else {
-      // Compatibilidad con formato anterior
       HORAS.forEach(h => {
         const btn = document.createElement('button');
         const ocupado = data.ocupados.includes(h);
@@ -1200,7 +1148,7 @@ async function loadHoras(){
     loading.style.display = 'none';
     grid.style.display = 'grid';
   } catch(e){
-    loading.textContent = 'Error al cargar horarios. Intentá de nuevo.';
+    loading.textContent = 'Error al cargar horarios. Intent\u00E1 de nuevo.';
   }
 }
 
@@ -1246,25 +1194,31 @@ async function confirmarTurno(){
     const [y,m,d] = st.fecha.split('-').map(Number);
     const date = new Date(y,m-1,d);
     const fechaStr = `${DIAS[date.getDay()]} ${d} de ${MESES[m-1]} de ${y}`;
-    const msg = encodeURIComponent(
-      `¡Hola! Reservé un turno para clase particular 📚\n\n` +
-      `👤 Nombre: ${st.nombre}\n` +
-      `📚 Materia: ${st.materia}\n` +
-      `🔄 Modalidad: ${st.modalidad}\n` +
-      `📅 Fecha: ${fechaStr}\n` +
-      `🕑 Horario: ${st.hora} hs\n\n` +
-      `¿Podés confirmarme? ¡Muchas gracias! 💜`
-    );
+    const lineas = [
+      '\xA1Hola! Reserve un turno para clase particular',
+      '',
+      '\u2B50 Nombre: ' + st.nombre,
+      '\u2B50 Materia: ' + st.materia,
+      '\u2B50 Modalidad: ' + st.modalidad,
+      '\u2B50 Fecha: ' + fechaStr,
+      '\u2B50 Horario: ' + st.hora + ' hs',
+      '',
+      'Podes confirmarme? Muchas gracias!'
+    ];
+    const msg = encodeURIComponent(lineas.join('\n'));
     window.open(`https://wa.me/5492926452797?text=${msg}`, '_blank');
 
     // Show success
     document.getElementById('step-3').classList.remove('active');
     document.getElementById('success-screen').style.display = 'block';
+    // Reset button for next use
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="white" style="vertical-align:middle"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.553 4.1 1.523 5.824L0 24l6.337-1.504A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.85 0-3.583-.5-5.073-1.37l-.364-.214-3.762.893.953-3.667-.237-.378A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg> Confirmar y escribir por WhatsApp';
 
   } catch(e){
     showMsg('Error de conexión. Intentá de nuevo.','error');
     btn.disabled=false;
-    btn.textContent='Confirmar y escribir por WhatsApp';
+    btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="white" style="vertical-align:middle"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.553 4.1 1.523 5.824L0 24l6.337-1.504A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.85 0-3.583-.5-5.073-1.37l-.364-.214-3.762.893.953-3.667-.237-.378A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg> Confirmar y escribir por WhatsApp';
   }
 }
 

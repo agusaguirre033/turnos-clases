@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const Datastore = require('nedb-promises');
+const { MongoClient, ObjectId } = require('mongodb');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,8 +9,30 @@ const PORT = process.env.PORT || 3000;
 // Configuración: máximo de personas por turno
 const MAX_POR_TURNO = 3;
 
-// DB
-const db = Datastore.create({ filename: path.join(__dirname, 'turnos.db'), autoload: true });
+// MongoDB Atlas Connection
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://agusaguirre053_db_user:C7qtdI66edyp0zWn@cluster0.ndrljhn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const DB_NAME = 'turnos_clases';
+
+let db;
+let turnosCollection;
+
+// Conectar a MongoDB
+async function connectDB() {
+  try {
+    const client = new MongoClient(MONGO_URI);
+    await client.connect();
+    db = client.db(DB_NAME);
+    turnosCollection = db.collection('turnos');
+    console.log('✅ Conectado a MongoDB Atlas');
+    
+    // Crear índices para mejor rendimiento
+    await turnosCollection.createIndex({ fecha: 1, hora: 1 });
+    await turnosCollection.createIndex({ fecha: 1 });
+  } catch (error) {
+    console.error('❌ Error conectando a MongoDB:', error.message);
+    process.exit(1);
+  }
+}
 
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
@@ -22,9 +44,9 @@ app.get('/api/turnos', async (req, res) => {
     const { year, month } = req.query;
     let query = {};
     if (year && month) {
-      query.fecha = new RegExp(`^${year}-${String(month).padStart(2,'0')}`);
+      query.fecha = { $regex: `^${year}-${String(month).padStart(2,'0')}` };
     }
-    const turnos = await db.find(query).sort({ fecha: 1, hora: 1 });
+    const turnos = await turnosCollection.find(query).sort({ fecha: 1, hora: 1 }).toArray();
     
     // Calcular qué días están completamente llenos (5 horas con 3 personas = 15 turnos)
     const TOTAL_HORAS = 5;
@@ -46,32 +68,63 @@ app.get('/api/turnos', async (req, res) => {
 // GET slots disponibles para una fecha
 app.get('/api/disponibilidad', async (req, res) => {
   try {
-    const { fecha } = req.query;
+    const { fecha, nombre, modalidad } = req.query;
     if (!fecha) return res.status(400).json({ error: 'Falta fecha' });
-    const turnosDia = await db.find({ fecha });
+    const turnosDia = await turnosCollection.find({ fecha }).toArray();
     
-    // Contar personas por hora
-    const conteoHoras = {};
+    // Agrupar turnos por hora
+    const turnosPorHora = {};
     turnosDia.forEach(t => {
-      conteoHoras[t.hora] = (conteoHoras[t.hora] || 0) + 1;
+      if (!turnosPorHora[t.hora]) turnosPorHora[t.hora] = [];
+      turnosPorHora[t.hora].push(t);
     });
     
     // Horarios cada 1 hora (14:00 a 18:00)
     const HORAS = ['14:00','15:00','16:00','17:00','18:00'];
+    const nombreNorm = nombre ? nombre.trim().toLowerCase() : null;
     
     // Crear array con info detallada de cada hora
-    const horasInfo = HORAS.map(hora => ({
-      hora,
-      ocupados: conteoHoras[hora] || 0,
-      disponibles: MAX_POR_TURNO - (conteoHoras[hora] || 0),
-      lleno: (conteoHoras[hora] || 0) >= MAX_POR_TURNO
-    }));
+    const horasInfo = HORAS.map(hora => {
+      const turnos = turnosPorHora[hora] || [];
+      const ocupados = turnos.length;
+      const lleno = ocupados >= MAX_POR_TURNO;
+      
+      // Verificar si la misma persona ya tiene turno en ese horario
+      let bloqueadoPersona = false;
+      if (nombreNorm) {
+        bloqueadoPersona = turnos.some(t => t.nombre.trim().toLowerCase() === nombreNorm);
+      }
+      
+      // Verificar si la modalidad es incompatible
+      let bloqueadoModalidad = false;
+      let modalidadExistente = null;
+      if (modalidad && turnos.length > 0) {
+        modalidadExistente = turnos[0].modalidad;
+        if (modalidadExistente !== modalidad) {
+          bloqueadoModalidad = true;
+        }
+      }
+      
+      const bloqueado = bloqueadoPersona || bloqueadoModalidad;
+      let motivoBloqueo = null;
+      if (bloqueadoPersona) motivoBloqueo = 'Ya tenés turno en este horario';
+      else if (bloqueadoModalidad) motivoBloqueo = `Solo ${modalidadExistente} en este horario`;
+      
+      return {
+        hora,
+        ocupados,
+        disponibles: MAX_POR_TURNO - ocupados,
+        lleno,
+        bloqueado,
+        motivoBloqueo,
+        modalidadExistente
+      };
+    });
     
-    // Compatibilidad: arrays simples para el frontend actual
-    const disponibles = horasInfo.filter(h => !h.lleno).map(h => h.hora);
-    const ocupados = horasInfo.filter(h => h.lleno).map(h => h.hora);
+    const disponibles = horasInfo.filter(h => !h.lleno && !h.bloqueado).map(h => h.hora);
+    const ocupadosList = horasInfo.filter(h => h.lleno).map(h => h.hora);
     
-    res.json({ fecha, disponibles, ocupados, horasInfo, maxPorTurno: MAX_POR_TURNO });
+    res.json({ fecha, disponibles, ocupados: ocupadosList, horasInfo, maxPorTurno: MAX_POR_TURNO });
   } catch(e) {
     res.status(500).json({ error: e.message });
   }
@@ -98,7 +151,7 @@ app.post('/api/turnos', async (req, res) => {
     materia = normalizarMateria(materia);
     
     // Verificar que no esté lleno (máximo 3 personas por turno)
-    const turnosExistentes = await db.find({ fecha, hora });
+    const turnosExistentes = await turnosCollection.find({ fecha, hora }).toArray();
     if (turnosExistentes.length >= MAX_POR_TURNO) {
       return res.status(409).json({ error: `Ese horario ya tiene ${MAX_POR_TURNO} personas registradas` });
     }
@@ -112,6 +165,14 @@ app.post('/api/turnos', async (req, res) => {
       return res.status(409).json({ error: `Ya tenés un turno reservado a las ${hora} ese día` });
     }
     
+    // Verificar que si ya hay turnos presenciales en ese horario, no se pueda agregar virtual y viceversa
+    if (turnosExistentes.length > 0) {
+      const modalidadExistente = turnosExistentes[0].modalidad;
+      if (modalidadExistente !== modalidad) {
+        return res.status(409).json({ error: `Ese horario ya tiene clases en modalidad ${modalidadExistente}. No se puede mezclar presencial y virtual en el mismo horario.` });
+      }
+    }
+    
     // Verificar que sea lunes-viernes
     const d = new Date(fecha + 'T12:00:00');
     const dow = d.getDay();
@@ -119,8 +180,9 @@ app.post('/api/turnos', async (req, res) => {
       return res.status(400).json({ error: 'Solo se dictan clases de lunes a viernes' });
     }
     const turno = { nombre, materia, modalidad, fecha, hora, creadoEn: new Date().toISOString() };
-    const nuevo = await db.insert(turno);
-    res.json({ ok: true, turno: nuevo });
+    const result = await turnosCollection.insertOne(turno);
+    turno._id = result.insertedId;
+    res.json({ ok: true, turno });
   } catch(e) {
     res.status(500).json({ error: e.message });
   }
@@ -129,7 +191,7 @@ app.post('/api/turnos', async (req, res) => {
 // DELETE turno (admin)
 app.delete('/api/turnos/:id', async (req, res) => {
   try {
-    await db.remove({ _id: req.params.id }, {});
+    await turnosCollection.deleteOne({ _id: new ObjectId(req.params.id) });
     res.json({ ok: true });
   } catch(e) {
     res.status(500).json({ error: e.message });
@@ -139,7 +201,7 @@ app.delete('/api/turnos/:id', async (req, res) => {
 // GET admin - todos los turnos
 app.get('/api/admin/turnos', async (req, res) => {
   try {
-    const turnos = await db.find({}).sort({ fecha: 1, hora: 1 });
+    const turnos = await turnosCollection.find({}).sort({ fecha: 1, hora: 1 }).toArray();
     res.json(turnos);
   } catch(e) {
     res.status(500).json({ error: e.message });
@@ -152,7 +214,7 @@ app.get('/api/admin/resumen', async (req, res) => {
     const { fecha } = req.query;
     if (!fecha) return res.status(400).json({ error: 'Falta fecha' });
     
-    const turnos = await db.find({ fecha }).sort({ hora: 1 });
+    const turnos = await turnosCollection.find({ fecha }).sort({ hora: 1 }).toArray();
     
     // Agrupar por hora
     const resumen = turnos.map(t => ({
@@ -173,7 +235,7 @@ app.get('/api/admin/resumen', async (req, res) => {
 // POST admin - corregir encoding de materias
 app.post('/api/admin/fix-encoding', async (req, res) => {
   try {
-    const turnos = await db.find({});
+    const turnos = await turnosCollection.find({}).toArray();
     let corregidos = 0;
     
     for (const t of turnos) {
@@ -184,7 +246,7 @@ app.post('/api/admin/fix-encoding', async (req, res) => {
         else if (t.materia.includes('Qu')) nuevaMateria = 'Química';
         else if (t.materia.includes('F')) nuevaMateria = 'Física';
         
-        await db.update({ _id: t._id }, { $set: { materia: nuevaMateria } });
+        await turnosCollection.updateOne({ _id: t._id }, { $set: { materia: nuevaMateria } });
         corregidos++;
       }
     }
@@ -195,4 +257,7 @@ app.post('/api/admin/fix-encoding', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
+// Iniciar servidor después de conectar a la DB
+connectDB().then(() => {
+  app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
+});
