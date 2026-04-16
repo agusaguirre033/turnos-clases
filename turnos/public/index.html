@@ -926,7 +926,10 @@ body {
     <!-- Login -->
     <div class="admin-login" id="admin-login">
       <p style="font-size:13px;color:#666;margin-bottom:12px">🔒 Ingresá la contraseña para acceder</p>
-      <input type="password" id="admin-pass" placeholder="Contraseña" onkeypress="if(event.key==='Enter')checkAdminPass()">
+      <div style="position:relative;display:inline-block;width:100%;max-width:200px">
+        <input type="password" id="admin-pass" placeholder="Contraseña" onkeypress="if(event.key==='Enter')checkAdminPass()" style="width:100%;padding-right:36px">
+        <span onclick="togglePassVis()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;user-select:none" id="eye-icon">👁️‍🗨️</span>
+      </div>
       <br>
       <button onclick="checkAdminPass()">Entrar</button>
       <p class="error-msg" id="admin-error">Contraseña incorrecta</p>
@@ -1195,13 +1198,13 @@ async function confirmarTurno(){
     const date = new Date(y,m-1,d);
     const fechaStr = `${DIAS[date.getDay()]} ${d} de ${MESES[m-1]} de ${y}`;
     const lineas = [
-      '\xA1Hola! Reserve un turno para clase particular',
+      'Hola! Reserve un turno para clase particular',
       '',
-      '\u2B50 Nombre: ' + st.nombre,
-      '\u2B50 Materia: ' + st.materia,
-      '\u2B50 Modalidad: ' + st.modalidad,
-      '\u2B50 Fecha: ' + fechaStr,
-      '\u2B50 Horario: ' + st.hora + ' hs',
+      '* Nombre: ' + st.nombre,
+      '* Materia: ' + st.materia,
+      '* Modalidad: ' + st.modalidad,
+      '* Fecha: ' + fechaStr,
+      '* Horario: ' + st.hora + ' hs',
       '',
       'Podes confirmarme? Muchas gracias!'
     ];
@@ -1258,8 +1261,20 @@ function toggleAdmin(){
   }
   
   // Verificar si ya tiene sesión guardada
-  if(adminOpen && !adminUnlocked && sessionStorage.getItem('adminUnlocked') === 'true') {
-    unlockAdmin();
+  if(adminOpen && !adminUnlocked) {
+    // Siempre pedir contraseña al recargar
+  }
+}
+
+function togglePassVis(){
+  const inp = document.getElementById('admin-pass');
+  const eye = document.getElementById('eye-icon');
+  if(inp.type === 'password'){
+    inp.type = 'text';
+    eye.textContent = '🙈';
+  } else {
+    inp.type = 'password';
+    eye.textContent = '👁️‍🗨️';
   }
 }
 
@@ -1268,7 +1283,6 @@ function checkAdminPass() {
   const errorEl = document.getElementById('admin-error');
   
   if(pass === ADMIN_PASSWORD) {
-    sessionStorage.setItem('adminUnlocked', 'true');
     unlockAdmin();
   } else {
     errorEl.style.display = 'block';
