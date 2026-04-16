@@ -969,16 +969,59 @@ const DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábad
 // Horarios cada 1 hora (14:00 a 18:00)
 const HORAS = ['14:00','15:00','16:00','17:00','18:00'];
 
-// Feriados Argentina 2025-2026
+// Feriados Argentina 2025-2026-2027 (nacionales + puentes turísticos)
 const FERIADOS = new Set([
-  '2025-01-01','2025-03-03','2025-03-04','2025-03-24','2025-04-02',
-  '2025-04-17','2025-04-18','2025-05-01','2025-05-25','2025-06-16',
-  '2025-06-20','2025-07-09','2025-08-17','2025-10-12','2025-11-20',
-  '2025-12-08','2025-12-25',
-  '2026-01-01','2026-02-16','2026-02-17','2026-03-23','2026-03-24',
-  '2026-04-02','2026-04-03','2026-05-01','2026-05-25','2026-06-15',
-  '2026-06-20','2026-07-09','2026-08-17','2026-10-12','2026-11-20',
-  '2026-12-08','2026-12-25'
+  // 2025
+  '2025-01-01', // Año Nuevo
+  '2025-03-03','2025-03-04', // Carnaval
+  '2025-03-24', // Día de la Memoria
+  '2025-04-02', // Día del Veterano y Malvinas
+  '2025-04-17','2025-04-18', // Jueves y Viernes Santo
+  '2025-05-01', // Día del Trabajador
+  '2025-05-02', // Puente turístico
+  '2025-05-25', // Día de la Revolución de Mayo
+  '2025-06-16', // Paso a la inmortalidad del Gral. Güemes
+  '2025-06-20', // Día de la Bandera
+  '2025-07-09', // Día de la Independencia
+  '2025-08-15','2025-08-17', // Paso a la inmortalidad del Gral. San Martín + puente
+  '2025-10-12', // Día del Respeto a la Diversidad Cultural (trasladable)
+  '2025-11-20', // Día de la Soberanía Nacional
+  '2025-11-21', // Puente turístico
+  '2025-12-08', // Inmaculada Concepción
+  '2025-12-25', // Navidad
+  // 2026
+  '2026-01-01', // Año Nuevo
+  '2026-02-16','2026-02-17', // Carnaval
+  '2026-03-24', // Día de la Memoria
+  '2026-04-02','2026-04-03', // Malvinas + Viernes Santo
+  '2026-05-01', // Día del Trabajador
+  '2026-05-25', // Revolución de Mayo
+  '2026-06-15', // Güemes (trasladado)
+  '2026-06-20', // Día de la Bandera
+  '2026-07-09', // Independencia
+  '2026-08-17', // San Martín
+  '2026-10-12', // Diversidad Cultural
+  '2026-11-20', // Soberanía Nacional
+  '2026-11-23', // Puente turístico
+  '2026-12-07', // Puente turístico
+  '2026-12-08', // Inmaculada Concepción
+  '2026-12-25', // Navidad
+  // 2027
+  '2027-01-01', // Año Nuevo
+  '2027-02-08','2027-02-09', // Carnaval
+  '2027-03-24', // Día de la Memoria
+  '2027-03-25','2027-03-26', // Jueves y Viernes Santo
+  '2027-04-02', // Malvinas
+  '2027-05-01', // Día del Trabajador
+  '2027-05-25', // Revolución de Mayo
+  '2027-06-20', // Día de la Bandera (feriado, cae domingo)
+  '2027-06-21', // Güemes (trasladado)
+  '2027-07-09', // Independencia
+  '2027-08-16', // San Martín (trasladado)
+  '2027-10-11', // Diversidad Cultural (trasladado)
+  '2027-11-22', // Soberanía Nacional (trasladado)
+  '2027-12-08', // Inmaculada Concepción
+  '2027-12-25', // Navidad
 ]);
 
 function pad(n){ return String(n).padStart(2,'0'); }
