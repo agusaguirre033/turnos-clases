@@ -162,4 +162,4 @@ En `server.js` modificar el array `HORAS` dentro del endpoint `/api/disponibilid
 ## 📝 Licencia
 
 Proyecto privado - Clases particulares de Agus Aguirre.  
-Tres Arroyos, Buenos Aires, Argentina.
+Coronel Suárez, Buenos Aires, Argentina.
